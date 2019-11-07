@@ -1,131 +1,139 @@
-const quotesUri = 'http://localhost:3000/quotes';
-const likesUri = 'http://localhost:3000/likes';
-
 document.addEventListener('DOMContentLoaded', function() {
-    fetchURL();
-    fetchLikes();
-    newQuotes();
-    deleteQuote();
-    destroyQuote();
-    likeQuote();
-})
+    
+    const quotesUrl = 'http://localhost:3000/quotes';
+    const quotesLikesUrl = 'http://localhost:3000/quotes?_embed=likes';
+    const likesUrl = 'http://localhost:3000/likes';
 
-function fetchURL(){
-    fetch(quotesUri)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(quotes){
+    quotesData();
+    newQuote();
+ 
+
+    function fetchQuotes() {
+        return fetch(quotesLikesUrl)
+        .then(function(response){
+            return response.json();
+        })
+    }
+    
+    function quotesData() {
+        fetchQuotes()
+        .then(function(quotes){
+            singleQuote(quotes)
+        })
+    }
+
+    function singleQuote(quotes) {
         for(let i = 0; i < quotes.length; i++){
             renderQuotes(quotes[i])
         }
-    })
-}
-
-function fetchLikes(){
-    fetch(likesUri)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(likes){
-        for(let i = 0; i < likes.length; i++) {
-            renderQuotes(likes[i])
-        }
-    })
-}
-
-function renderQuotes(quotes, likes) {
-const parentElement = document.querySelector('body');
-const quoteElement = document.createElement('div');
-quoteElement.innerHTML = `
-<br>
-<ul>
-<li class='quote-card'>
-<blockquote class="blockquote">
-<p class="mb-0">${quotes.quote}</p>
-<footer class="blockquote-footer">${quotes.author}</footer>
-<br>
-<button class='btn-success'>Likes: <span>${likes}</span></button>
-<button class='btn-danger'>Delete</button>
-</blockquote>
-</li>
-</ul>
-`;
-parentElement.appendChild(quoteElement);
-const deleteButton = document.querySelector('.btn-danger');
-deleteButton.addEventListener('click', deleteQuote);
-const likeButton = document.querySelector('.btn-success')
-likeButton.addEventListener('click', likeQuote);
-}
-
-function newQuotes(){ 
-    const submitButton = document.querySelector('.btn-primary')
-    submitButton.addEventListener('click', function(e){
-        e.preventDefault();
-        const newQuote = {
-            quote: document.querySelector('input[id="new-quote"]').value,
-            author: document.querySelector('input[id="author"]').value
-        }
-        createQuote(newQuote)
-        .then(function(quotes){
-            renderQuotes(quotes);
-        })
-    })
-}
-
-function createQuote(newQuote){
-let configObject = { 
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-    },
-    body: JSON.stringify(newQuote, {quoteId: 0})     
-}
-
-    return fetch(quotesUri, configObject)
-    .then(function(response){
-        return response.json();
-    })
-}
-
-function deleteQuote(e) {
-    destroyQuote(e)
-    .then(function(quotes) {
-        quotes.parentElement.remove()
-    })
-}
-
-function destroyQuote(e) {
-    return fetch(`${quotesUri}/${e.target.id}`, {method: "DELETE"})
-    .then(function(response){
-        return response.json();
-    })
-}
-
-
-function likeQuote(e) {
-    let likedQuote = {
-        quoteId: quote.id
     }
     
-    updateQuotes(likedQuote, e.target.id)
-    .then(function(quotes){
-        e.target.querySelector('span').innerText = `${quotes.likedQuote}`
-    })
-}
+    
+    function renderQuotes(quote) {
+        const parentEl = document.querySelector('body');
+        const quoteEl = document.createElement('div');
+        const ulEl = document.createElement('ul');
+        const liEl = document.createElement('li');
+        const blockEl = document.createElement('blockquote');
+        const pEl = document.createElement('p');
+        const footerEl = document.createElement('footer');
+        const brEl = document.createElement('br');
+        const likeBtn = document.createElement('button');
+        const spanEl = document.createElement('span');
+        const dltBtn = document.createElement('button');
 
-function updateQuotes(likedQuote, quoteId){
-    const configObject = {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-        },
-        body: JSON.stringify(likedQuote)
+        liEl.className = 'quote-card';
+        blockEl.className = 'blockquote';
+        pEl.className = 'mb-0';
+        pEl.innerText = quote.quote
+        footerEl.className = 'blockquote-footer';
+        footerEl.innerText = quote.author
+        likeBtn.className = 'btn-success';
+        likeBtn.dataset.likeButtonId = quote.id
+        likeBtn.innerText = 'Likes: ';
+        spanEl.innerText = quote.likes ? quote.likes.length : 0
+        dltBtn.className = 'btn-danger';
+        dltBtn.dataset.deleteButtonId = quote.id
+        dltBtn.innerText = 'Delete'
+
+        parentEl.append(quoteEl);
+        likeBtn.appendChild(spanEl);
+        blockEl.append(pEl, footerEl, brEl, likeBtn, dltBtn);
+        quoteEl.append(liEl);
+        liEl.append(blockEl)
+
+        likeBtn.addEventListener('click', likeQuote);
+        dltBtn.addEventListener('click', deleteQuote);
     }
-    return fetch(likesUri, configObject)
-    .then(function(response){
-        return response.json();
-    })
-}
+
+    // function likeQuote(e) {
+    //     const quoteId = e.target.id
+    //     const newLike = {
+    //         quoteId: parseInt(quoteId)
+    //     }
+
+    //     const configObj = {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         },
+    //         body: JSON.stringify(newLike)
+    //     }
+
+    //     return fetch(likesUrl, configObj)
+    //     .then(function(response) {
+    //         return response.json()
+    //     })
+    //     .then(function(like) {
+    //         const updateLike = e.target.parentNode.querySelector('span').innerText
+    //         const toUpdate = parseInt(updateLike) + 1
+    //         return toUpdate
+    //     })
+    // }
+
+    // function deleteQuote(e) {
+    //     const quoteId = e.target.dataset.deleteButtonId
+
+    //     const configObj = {
+    //         method: "DELETE"
+    //     }
+
+    //     return fetch(`${quotesUrl}/${quoteId}`, configObj)
+    //     .then(function(response) {
+    //         return response.json()
+    //     })
+    //     .then(function(quote) {
+    //         e.target.parentNode.remove()
+    //     })
+    // }
+
+    function newQuote() {
+        const submitButton = document.querySelector('.btn-primary');
+        submitButton.addEventListener('click', function(e) {
+            e.preventDefault()
+            const newEntry = {
+                quote: submitButton.parentNode.querySelector('input[id="new-quote"]').value,
+                author: submitButton.parentNode.querySelector('input[id="author"]').value
+            }
+
+            const configObj = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(newEntry)
+            }
+
+            return fetch(quotesUrl, configObj)
+            .then(function(response) {
+                return response.json()
+            })
+            .then(function(quote) {
+                renderQuotes(quote)
+            })
+        })
+    }
+
+})

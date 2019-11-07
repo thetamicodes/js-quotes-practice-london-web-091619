@@ -1,11 +1,6 @@
 {
   "quotes": [
     {
-      "id": 1,
-      "quote": "The here and now is all we have, and if we play it right it's all we'll need.",
-      "author": "Ann Richards"
-    },
-    {
       "id": 2,
       "quote": "There are no secrets to success. It is the result of preparation, hard work, and learning from failure.",
       "author": "Collin Powell"
@@ -31,54 +26,9 @@
       "author": "Sandra Day O'Connor"
     },
     {
-      "id": 7,
-      "quote": "Tell me and I forget, teach me and I remember, involve me and I learn.",
-      "author": "Benjamin Franklin"
-    },
-    {
-      "id": 8,
-      "quote": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
-      "author": "Winston Churchhill"
-    },
-    {
-      "id": 9,
-      "quote": "Our greatest glory is not in never falling, but in rising everytime we fall.",
-      "author": "Confucius"
-    },
-    {
-      "id": 10,
-      "quote": "You know, failure hurts. Any kind of failure stings. If you live in the sting, you will undoubtedly fail. My way of getting past the sting is to say no, I’m just not going to let this get me down.",
-      "author": "Sonia Sotomayor"
-    },
-    {
-      "quote": "New2",
-      "author": "Me2",
-      "id": 43
-    },
-    {
-      "quote": "New Quote",
-      "author": "Tami",
-      "id": 44
-    },
-    {
-      "quote": "Another Quote",
-      "author": "Sarah",
-      "id": 45
-    },
-    {
-      "quote": "Another Quote but different",
-      "author": "Sarah",
-      "id": 46
-    },
-    {
-      "quote": "New 3",
-      "author": "3",
-      "id": 47
-    },
-    {
-      "quote": "This is a Test",
-      "author": "Tester",
-      "id": 48
+      "quote": "l",
+      "author": "me",
+      "id": 7
     }
   ],
   "likes": [
@@ -86,6 +36,218 @@
       "id": 1,
       "quoteId": 1,
       "createdAt": 1558524356
+    },
+    {
+      "quoteId": null,
+      "id": 2
+    },
+    {
+      "quoteId": null,
+      "id": 3
+    },
+    {
+      "quoteId": 2,
+      "id": 4
+    },
+    {
+      "quoteId": 2,
+      "id": 5
+    },
+    {
+      "quoteId": 2,
+      "id": 6
+    },
+    {
+      "quoteId": 2,
+      "id": 7
+    },
+    {
+      "quoteId": null,
+      "id": 8
+    },
+    {
+      "quoteId": null,
+      "id": 9
+    },
+    {
+      "quoteId": null,
+      "id": 10
+    },
+    {
+      "quoteId": null,
+      "id": 11
+    },
+    {
+      "quoteId": null,
+      "id": 12
+    },
+    {
+      "quoteId": null,
+      "id": 13
+    },
+    {
+      "quoteId": 3,
+      "id": 14
+    },
+    {
+      "quoteId": 3,
+      "id": 15
+    },
+    {
+      "quoteId": 3,
+      "id": 16
+    },
+    {
+      "quoteId": 3,
+      "id": 17
+    },
+    {
+      "quoteId": "4",
+      "id": 18
+    },
+    {
+      "quoteId": "4",
+      "id": 19
+    },
+    {
+      "quoteId": "4",
+      "id": 20
+    },
+    {
+      "quoteId": "4",
+      "id": 21
+    },
+    {
+      "quoteId": "4",
+      "id": 22
+    },
+    {
+      "quoteId": "4",
+      "id": 23
+    },
+    {
+      "quoteId": "4",
+      "id": 24
+    },
+    {
+      "quoteId": 6,
+      "id": 25
+    },
+    {
+      "quoteId": 6,
+      "id": 26
+    },
+    {
+      "quoteId": 6,
+      "id": 27
+    },
+    {
+      "quoteId": 6,
+      "id": 28
+    },
+    {
+      "quoteId": 7,
+      "id": 29
+    },
+    {
+      "quoteId": 7,
+      "id": 30
+    },
+    {
+      "quoteId": 7,
+      "id": 31
+    },
+    {
+      "quoteId": null,
+      "id": 32
+    },
+    {
+      "quoteId": null,
+      "id": 33
+    },
+    {
+      "quoteId": null,
+      "id": 34
+    },
+    {
+      "quoteId": null,
+      "id": 35
+    },
+    {
+      "quoteId": null,
+      "id": 36
+    },
+    {
+      "quoteId": null,
+      "id": 37
+    },
+    {
+      "quoteId": null,
+      "id": 38
+    },
+    {
+      "quoteId": null,
+      "id": 39
+    },
+    {
+      "quoteId": null,
+      "id": 40
+    },
+    {
+      "quoteId": null,
+      "id": 41
+    },
+    {
+      "quoteId": null,
+      "id": 42
+    },
+    {
+      "quoteId": null,
+      "id": 43
+    },
+    {
+      "quoteId": null,
+      "id": 44
+    },
+    {
+      "quoteId": null,
+      "id": 45
+    },
+    {
+      "quoteId": null,
+      "id": 46
+    },
+    {
+      "quoteId": null,
+      "id": 47
+    },
+    {
+      "quoteId": null,
+      "id": 48
+    },
+    {
+      "quoteId": null,
+      "id": 49
+    },
+    {
+      "quoteId": null,
+      "id": 50
+    },
+    {
+      "quoteId": null,
+      "id": 51
+    },
+    {
+      "quoteId": null,
+      "id": 52
+    },
+    {
+      "quoteId": null,
+      "id": 53
+    },
+    {
+      "quoteId": null,
+      "id": 54
     }
   ]
 }
